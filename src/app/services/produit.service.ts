@@ -24,9 +24,9 @@ export class ProduitService {
         this.produits.push(produit);
     }
 
-    supprimerProduit( prod: Produit){
+    supprimerProduit( produit: Produit){
         //supprimer le produit prod du tableau produits
-        const index = this.produits.indexOf(prod, 0);
+        const index = this.produits.indexOf(produit, 0);
         if (index > -1) {
             this.produits.splice(index, 1);
         }
@@ -37,4 +37,24 @@ export class ProduitService {
     // this.produits.splice(index, 1);
     // }
     // }); */ }
+
+    consulterProduit(id: number): Produit {
+        return <Produit>this.produits.find(p => p.idProduit == id);
+    }
+
+    updateProduit(produit: Produit) {
+        this.supprimerProduit(produit);
+        this.ajouterProduit(produit);
+        this.trierProduits();
+    }
+
+    trierProduits(){
+        this.produits = this.produits.sort((n1,n2) => {
+            if (n1.idProduit > n2.idProduit) {
+                return 1;
+            } if (n1.idProduit < n2.idProduit) {
+                return -1;
+            } return 0;
+        })
+        ; }
 }
