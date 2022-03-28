@@ -1,0 +1,34 @@
+<div class="container">
+        <div>
+            <h2>Ajouter un Produit :</h2>
+        </div>
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label >ID Produit</label>
+            <input type="text" [(ngModel)]="produit.idProduit" name="idProduit" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4" >
+            <label >Nom Produit</label>
+            <input type="text"[(ngModel)]= "produit.nomProduit" name="nomProduit" class="form-control">
+        </div>
+
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label >Prix Produit</label>
+            <input type="number" [(ngModel)]= "produit.prixProduit" name="prixProduit" class="form-control">
+        </div>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label >Date création</label>
+            <input type="date" [(ngModel)]= "produit.dateCreation" name="dateCreation" class="form-control">
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="addProduit()" class="btn btn-success">
+                Ajouter
+            </button>
+        </div>
+        <div class="alert alert-success mb-3" *ngIf="message">
+           {{ message }}
+        </div>
+    </form>
+</div>

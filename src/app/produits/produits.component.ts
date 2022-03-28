@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Produit} from "../model/produit.model";
+import {ProduitService} from "../services/produit.service";
 
 @Component({
   selector: 'app-produits',
@@ -6,13 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProduitsComponent implements OnInit {
 
-    produits : string[];
+    produits : Produit[];
 
-  constructor() {
-      this.produits = ["PC Asus", "Tablette Apple", "Macbook", "Télévision connectée"];
-  }
-
+    constructor(
+        private produitService: ProduitService
+    ) {
+        this.produits = this.produitService.listeProduit();
+    }
   ngOnInit(): void {
   }
 
+    supprimerProduit(produit: Produit) {
+        let conf = confirm("Etes-vous sûr ?");
+        if (conf) {
+            this.produitService.supprimerProduit(produit);
+        }
+    }
 }
